@@ -4,8 +4,8 @@ from app.matcher import match_documents
 
 app = FastAPI(
     title="Document Matcher API",
-    description="Semantic document similarity and retrieval engine using embeddings.",
-    version="1.0.0"
+    description="Semantic document similarity service using Sentence Transformers + FAISS.",
+    version="2.0.0"
 )
 
 class QueryRequest(BaseModel):
