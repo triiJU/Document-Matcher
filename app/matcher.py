@@ -1,17 +1,22 @@
+import faiss
 import pickle
-from sentence_transformers import SentenceTransformer, util
+import numpy as np
+from sentence_transformers import SentenceTransformer
 
-model = SentenceTransformer('all-MiniLM-L6-v2')
+# Load sentence transformer model
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
-with open("model/vector_index.pkl", "rb") as f:
-    vector_data = pickle.load(f)
+# Load FAISS index and corresponding documents
+faiss_index = faiss.read_index("model/vector_index.faiss")
+with open("model/docs.pkl", "rb") as f:
+    documents = pickle.load(f)
 
-documents = vector_data["docs"]
-embeddings = vector_data["embeddings"]
-
-def match_documents(query, top_k=5):
-    query_emb = model.encode(query, convert_to_tensor=True)
-    scores = util.cos_sim(query_emb, embeddings)[0]
-    top_results = scores.topk(k=top_k)
-    results = [{"document": documents[idx], "score": float(scores[idx])} for idx in top_results[1]]
+def match_documents(query: str, top_k: int = 5):
+    """Return top-k most similar documents using FAISS for fast search."""
+    query_emb = model.encode([query]).astype("float32")
+    distances, indices = faiss_index.search(query_emb, top_k)
+    results = [
+        {"document": documents[i], "score": round(1 - float(distances[0][idx]), 4)}
+        for idx, i in enumerate(indices[0])
+    ]
     return results
