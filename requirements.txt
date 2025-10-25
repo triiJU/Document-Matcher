@@ -3,5 +3,6 @@ uvicorn
 sentence-transformers
 torch
 numpy
-scikit-learn
 pandas
+faiss-cpu
+scikit-learn
