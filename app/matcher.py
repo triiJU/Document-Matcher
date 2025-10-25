@@ -6,7 +6,7 @@ from sentence_transformers import SentenceTransformer
 # Load sentence transformer model
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
-# Load FAISS index and corresponding documents
+# Load FAISS index and docs
 faiss_index = faiss.read_index("model/vector_index.faiss")
 with open("model/docs.pkl", "rb") as f:
     documents = pickle.load(f)
