@@ -1,21 +1,23 @@
-# Document_Matcher
+# Document Matcher
+### Scalable Semantic Search Engine (FastAPI + Sentence Transformers + FAISS)
 
-A scalable document retrieval system that matches user queries with semantically similar documents using **Sentence Transformers** and **FastAPI**.
+A **semantic document retrieval system** that uses embeddings and FAISS for high-speed, low-latency similarity search.  
+Containerized for deployment via **Docker**, built with **FastAPI**, and optimized for **real-time AI inference**.
 
 ---
 
 ## Overview
-This project provides an intelligent backend service that allows querying large document collections for semantic similarity.  
-Built for modularity, performance, and deployability.
+Document Matcher allows querying large text corpora and retrieving semantically similar results in sub-milliseconds using FAISS.  
+It demonstrates backend scalability, containerized deployment, and ML system integration.
 
 ---
 
 ## Tech Stack
-- **FastAPI** — API framework  
-- **Sentence Transformers** — embedding generation  
-- **PyTorch / NumPy** — vector computations  
-- **Docker** — containerized deployment  
-- **Uvicorn** — ASGI server  
+- **FastAPI** — RESTful backend  
+- **Sentence Transformers** — embeddings  
+- **FAISS (Facebook AI Similarity Search)** — vector indexing  
+- **Docker + Uvicorn** — deployment  
+- **PyTorch / NumPy / Pandas** — data + math  
 
 ---
 
